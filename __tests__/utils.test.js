@@ -4,8 +4,95 @@ const {
   formatComments,
 } = require('../db/utils/utils');
 
-describe('formatDates', () => {});
+describe('formatDates', () => {
+  test('when passed an empty array return an array ', () => {
+    expect(Array.isArray(formatDates([]))).toBe(true);
+  });
+  test('when passed an array return a new array ', () => {
+    const input = [];
+    //const expectedOutput = []
+    const actualOutput = formatDates(input);
+    expect(actualOutput).not.toBe(input);
+  });
+  test('when passed an array with an object that object is returned with all its values   ', () => {
+    const input = [{ iNeedHelp: 'please' }];
+    const expectedOutput = [
+      { iNeedHelp: 'please', currentTime: new Date().getDate() },
+    ];
+    const actualOutput = formatDates(input);
+    expect(actualOutput).toEqual(expectedOutput);
+  });
+  test('when passed an array with an object that object is returned without being mutated  ', () => {
+    const input = [{ iNeedHelp: 'please',
+     currentTime: new Date().getDate()}];
+    const expectedOutput = [
+      { iNeedHelp: 'please', currentTime: new Date().getDate() },
+    ];
+    const actualOutput = formatDates(input);
+    expect(actualOutput).not.toBe(input);
+  });
+  test('when passed an array with many objects those objects are returned with all there values  ', () => {
+    const input = [
+      {
+        iNeedHelp: 'please',
+        currentTime: new Date().getDate(),
+      },
+      {
+        iDontUnderstand: 'help',
+        currentTime: new Date().getDate(),
+      },
+    ];
+    const expectedOutput = [
+      {
+        iNeedHelp: 'please',
+        currentTime: new Date().getDate(),
+      },
+      {
+        iDontUnderstand: 'help',
+        currentTime: new Date().getDate(),
+      },
+    ];
+    const actualOutput = formatDates(input);
+    expect(actualOutput).toEqual(expectedOutput);
+  });
+  test('when passed an array with many objects those objects are returned with all there values  ', () => {
+    const input = [
+      { iNeedHelp: 'please', currentTime: new Date().getDate() },
+      {
+        iDontUnderstand: 'help',
+        currentTime: new Date().getDate(),
+      },
+    ];
+    const expectedOutput = [
+      { iNeedHelp: 'please', currentTime: new Date().getDate() },
+      {
+        iDontUnderstand: 'help',
+        currentTime: new Date().getDate(),
+      },
+    ];
+    const actualOutput = formatDates(input);
+    expect(actualOutput).not.toBe(input);
+  });
+});
 
-describe('makeRefObj', () => {});
+describe.only('makeRefObj', () => {
+ test('when passed an empty array return an array ', () => {
+   expect(Array.isArray(formatDates([]))).toBe(true);
+ });
+ test('when passed an array return a new array ', () => {
+   const input = [];
+   //const expectedOutput = []
+   const actualOutput = formatDates(input);
+   expect(actualOutput).not.toBe(input);
+ });
+ test('when passed an array with an object that object is returned with the article_ids value becoming the value for the titles value', () => {
+   const input = [
+     { article_id: 1, title: 'A', currentTime: new Date().getDate() },
+   ];
+   const expectedOutput = [{ A: 1, currentTime: new Date().getDate() }];
+   const actualOutput = formatDates(input);
+   expect(actualOutput).toEqual(expectedOutput);
+ });
+});
 
 describe('formatComments', () => {});
