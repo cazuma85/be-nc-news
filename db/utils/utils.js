@@ -11,12 +11,14 @@ exports.formatDates = (list) => {
 exports.makeRefObj = (list) => {
   const newList = list.map((listObj) => {
     const newObj = { ...listObj };
-    newObj.currentTime = new Date().getDate();
-    delete thisIsObject.article_id;
-    delete thisIsObject.title;
-    return newobj;
+    if (newObj.currentTime) {
+      newObj.currentTime = new Date().getDate();
+    }
+    newObj[listObj.title] = listObj.article_id;
+    delete newObj.article_id;
+    delete newObj.title;
+    return newObj;
   });
-  console.log(newList)
   return newList;
 };
 
