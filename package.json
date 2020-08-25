@@ -4,6 +4,8 @@
   "description": "bc-nc-news",
   "main": "index.js",
   "scripts": {
+    "migrate-rollback": "knex migrate:rollback",
+    "migrate-latest": "knex migrate:latest",
     "setup-dbs": "psql -f ./db/setup.sql",
     "seed": "knex seed:run",
     "test": "jest",
@@ -21,8 +23,11 @@
   },
   "homepage": "https://github.com/northcoders/be-nc-news#readme",
   "dependencies": {
+    "expre": "^0.1.1",
+    "express": "^4.17.1",
     "knex": "^0.21.2",
-    "pg": "^8.3.0"
+    "pg": "^8.3.0",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "jest": "^26.2.2"
